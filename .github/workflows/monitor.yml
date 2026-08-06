@@ -1,0 +1,52 @@
+name: Kobe Monitor
+
+on:
+  schedule:
+    # Every 5 minutes. This is GitHub's minimum interval. Each run then polls
+    # internally every 8s for ~4.5 minutes, so coverage is near-continuous.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:        # lets you fire a run manually from the phone
+
+# Needed so the job can commit state.json back to the repo.
+permissions:
+  contents: write
+
+concurrency:
+  group: kobe-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install aiohttp
+
+      - name: Run monitor
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          RUN_SECONDS: "270"
+          POLL_SECONDS: "8"
+        run: python kobe_monitor.py
+
+      - name: Persist state
+        run: |
+          if [[ -n "$(git status --porcelain state.json)" ]]; then
+            git config user.name  "kobe-monitor"
+            git config user.email "actions@github.com"
+            git add state.json
+            git commit -m "state update"
+            # Rebase in case a prior run pushed while this one was polling.
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            git push
+          else
+            echo "no state change"
+          fi
