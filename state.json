@@ -1,15 +1,36 @@
 {
   "IR1848-400": {
-    "status": "ACTIVE",
-    "sizes": [],
+    "status": "INACTIVE",
+    "sizes": [
+      "3.5Y",
+      "4.5Y",
+      "4Y",
+      "5.5Y",
+      "5Y",
+      "6.5Y",
+      "6Y",
+      "7Y"
+    ],
     "title": "Kobe 5 Protro 'Hyper Royal' (IO6256-400) Release Date",
-    "last_seen": 1786802830.4818273
+    "last_seen": 1786804675.4700623
   },
   "IR1849-400": {
-    "status": "ACTIVE",
-    "sizes": [],
+    "status": "INACTIVE",
+    "sizes": [
+      "1.5Y",
+      "11.5C",
+      "11C",
+      "12.5C",
+      "12C",
+      "13.5C",
+      "13C",
+      "1Y",
+      "2.5Y",
+      "2Y",
+      "3Y"
+    ],
     "title": "Kobe 5 Protro 'Hyper Royal' (IO6256-400) Release Date",
-    "last_seen": 1786802830.481832
+    "last_seen": 1786804675.4700682
   },
   "IO6256-400": {
     "status": "ACTIVE",
@@ -17,7 +38,14 @@
       "10",
       "10.5",
       "11",
+      "11.5",
       "12",
+      "12.5",
+      "13",
+      "13.5",
+      "14",
+      "15",
+      "16",
       "17",
       "18",
       "3.5",
@@ -35,6 +63,6 @@
       "9.5"
     ],
     "title": "Kobe 5 Protro 'Hyper Royal' (IO6256-400) Release Date",
-    "last_seen": 1786802830.4818435
+    "last_seen": 1786804675.4700754
   }
 }
